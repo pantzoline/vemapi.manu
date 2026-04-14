@@ -2,267 +2,134 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎂 Feliz Aniversário, Meu Amor 🎂</title>
-  <meta name="description" content="Uma surpresa especial feita com todo o meu amor para você." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Feliz Aniversário Manoela 🎂</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Circular+Std:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 <body>
+  <div id="app" class="app">
+    <!-- Progress Bar (Instagram Stories Style) -->
+    <div class="progress-container" id="progress-container"></div>
 
-  <!-- ✨ Birthday Intro Screen -->
-  <div id="intro-screen">
-    <div class="intro-content">
-      <div class="heart-burst">
-        <span class="big-heart">💖</span>
+    <div class="scenes-wrapper" id="scenes-wrapper">
+      
+      <!-- Scene 0: Welcome / Mistério -->
+      <div class="scene" id="scene-0" data-theme="dark">
+        <div class="scene-content flex-center">
+          <h1 class="font-serif bounce-in" style="font-size: 4rem;">Para Você.</h1>
+          <p class="body-text mt-1" style="font-style:italic;">Certifique-se que o volume está no máximo</p>
+          <button class="primary-btn mt-2 pulse-anim" onclick="nextScene()">Iniciar</button>
+        </div>
       </div>
-      <h1 class="intro-title">Feliz Aniversário</h1>
-      <h2 class="intro-subtitle" id="girlfriend-name">Meu Amor ✨</h2>
-      <p class="intro-message">Preparei algo especial para você...</p>
-      <button class="intro-btn" id="enter-btn">
-        <span>Abrir Surpresa</span>
-        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8l6 4-6 4z"/></svg>
-      </button>
+
+      <!-- Scene 1: Abertura Explosiva -->
+      <div class="scene" id="scene-1" data-theme="love-intense">
+        <div class="scene-content flex-center">
+          <h2 class="sub-heading slide-up">Feliz Aniversário,</h2>
+          <h1 class="main-heading font-serif accent slide-up delay-1">Manoela Mariani Martins</h1>
+          <p class="body-text mt-1 slide-up delay-2">Tudo começa agora.</p>
+        </div>
+        <div class="click-catcher" onclick="nextScene()"></div>
+      </div>
+
+      <!-- Scene 2: State Of Grace -->
+      <div class="scene" id="scene-2" data-theme="dark-red">
+        <div class="scene-content flex-center">
+          <div class="album-art glow fade-in"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/25/0d/7e/250d7e42-3a2f-19ac-f865-f1e04a4a1f97/12UMDIM01007.rgb.jpg/600x600bb.jpg" alt="State of Grace"/></div>
+          <h2 class="song-lyric mt-2 font-serif slide-up delay-1">"Neste dia especial, eu queria te dar o mundo..."</h2>
+        </div>
+        <div class="click-catcher" onclick="nextScene()"></div>
+      </div>
+
+      <!-- Scene 3: Lover -->
+      <div class="scene" id="scene-3" data-theme="lilac-dream">
+        <div class="scene-content flex-center">
+          <div class="album-art glow fade-in"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/600x600bb.jpg" alt="Lover"/></div>
+          <h2 class="song-lyric mt-2 font-serif slide-up delay-1">Mergulhar nesse sentimento suave e doce.</h2>
+        </div>
+        <div class="click-catcher" onclick="nextScene()"></div>
+      </div>
+
+      <!-- Scene 4: Long Live -->
+      <div class="scene" id="scene-4" data-theme="gold-epic">
+        <div class="scene-content flex-center">
+          <div class="album-art glow fade-in"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d4/23/57/d423579f-24f7-5c82-ed10-fbfd21ceef25/10UMDIM00487.rgb.jpg/600x600bb.jpg" alt="Long Live"/></div>
+          <h2 class="song-lyric mt-2 font-serif slide-up delay-1">E construir uma história que brilhe para a eternidade.</h2>
+        </div>
+        <div class="click-catcher" onclick="nextScene()"></div>
+      </div>
+
+      <!-- Scene 5: Te Vivo -->
+      <div class="scene" id="scene-5" data-theme="intense-red">
+        <div class="scene-content flex-center">
+          <div class="album-art glow fade-in"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/6e/84/2f/6e842fd2-38c3-171f-da8b-92effb82f9cf/dj.ofryewvd.jpg/600x600bb.jpg" alt="Te Vivo"/></div>
+          <h2 class="song-lyric mt-2 font-serif slide-up delay-1">"Aquela saudade e aquele calor inexplicáveis."</h2>
+        </div>
+        <div class="click-catcher" onclick="nextScene()"></div>
+      </div>
+
+      <!-- Scene 6: A Rua -->
+      <div class="scene" id="scene-6" data-theme="midnight-blue">
+        <div class="scene-content flex-center">
+          <div class="album-art glow fade-in"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/b7/9b/81/b79b8138-b95e-bf0d-1e7c-92a28bbf71a1/19UMGIM02269.rgb.jpg/600x600bb.jpg" alt="A Rua"/></div>
+          <h2 class="song-lyric mt-2 font-serif slide-up delay-1">Porque afinal de contas, debaixo de toda estrela... meu lar é você.</h2>
+        </div>
+        <div class="click-catcher" onclick="nextScene()"></div>
+      </div>
+
+      <!-- Scene 7: Photos -->
+      <div class="scene" id="scene-7" data-theme="sunrise">
+        <div class="scene-content flex-center w-full h-full p-0">
+          <div class="photo-carrossel" id="photo-carrossel">
+            <img src="assets/photos/photo1.png" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&h=800&q=80'" class="photo-slide active" />
+            <img src="assets/photos/photo2.png" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&h=800&q=80'" class="photo-slide" />
+            <img src="assets/photos/photo3.png" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&h=800&q=80'" class="photo-slide" />
+            <img src="assets/photos/photo4.png" onerror="this.src='https://images.unsplash.com/photo-1474552226712-ac0f0961a954?auto=format&fit=crop&w=400&h=800&q=80'" class="photo-slide" />
+          </div>
+          <div class="photo-overlay font-serif drop-shadow pulse-anim">Apenas o começo</div>
+        </div>
+        <div class="click-catcher" onclick="nextScene()"></div>
+      </div>
+
+      <!-- Scene 8: The Video (Climax) -->
+      <div class="scene" id="scene-8" data-theme="dark">
+        <div class="scene-content flex-center w-full">
+           <h2 class="font-serif mb-2 slide-up" style="font-size: 2rem;">Alguém muito especial tem um recado pra você...</h2>
+           <div class="video-container glow fade-in delay-1">
+               <video id="barbie-video" src="assets/barbie_video.mp4" controls preload="auto" poster="https://static.wikia.nocookie.net/barbie-movies/images/f/f6/Barbiemovies.jpg/revision/latest"></video>
+               <!-- Fallback if placeholder doesn't exist -->
+               <div class="video-overlay flex-center" id="video-overlay" onclick="playBarbie()">
+                  <span>▶ Play</span>
+               </div>
+           </div>
+           <button class="primary-btn mt-2 fade-in delay-2" onclick="nextScene()">Concluir</button>
+        </div>
+      </div>
+      
+      <!-- Scene 9: Carta Final -->
+      <div class="scene" id="scene-9" data-theme="love-intense">
+        <div class="scene-content scrollable">
+          <h1 class="font-serif slide-up" style="font-size:3.5rem; margin-bottom: 2rem;">Feliz Aniversário, Meu Amor.</h1>
+          <p class="body-text txt-left slide-up delay-1">Manoela,</p>
+          <p class="body-text txt-left mt-1 slide-up delay-1">Hoje celebramos o dia em que o mundo ficou mais bonito porque você chegou. Eu queria que essa jornada te lembrasse do quão intensa e real é a nossa história.</p>
+          <p class="body-text txt-left mt-1 slide-up delay-2">Nossa cumplicidade, cada risada e todos os nossos momentos são o meu maior tesouro.</p>
+          <p class="body-text txt-left mt-1 slide-up delay-3">Espero que este simples presente transborde o amor gigante que sinto. Que a vida nos permita dançar juntos por todas as eras.</p>
+          <p class="body-text txt-left mt-2 slide-up delay-4"><strong>Te amo para sempre.</strong></p>
+          <div class="hearts-anim mt-2 slide-up delay-5">💖 💖 💖</div>
+        </div>
+      </div>
+
     </div>
-    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Hidden YouTube Players Container -->
+    <div id="yt-players" style="display:none;"></div>
   </div>
 
-  <!-- 🎵 Main App -->
-  <div class="app" id="main-app" style="display:none;">
-
-    <!-- Sidebar -->
-    <nav class="sidebar">
-      <div class="sidebar-logo">
-        <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-          <path d="M12 2C6.479 2 2 6.479 2 12s4.479 10 10 10 10-4.479 10-10S17.521 2 12 2zm4.571 14.823a.623.623 0 01-.858.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 01-.277-1.215c3.809-.87 7.076-.496 9.713 1.115a.623.623 0 01.207.857zm1.218-2.712a.779.779 0 01-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 01-.973-.519.78.78 0 01.52-.972c3.632-1.102 8.147-.568 11.233 1.328a.779.779 0 01.257 1.072zm.105-2.823c-3.223-1.914-8.54-2.09-11.618-1.156a.935.935 0 11-.543-1.79c3.532-1.072 9.404-.865 13.115 1.338a.935.935 0 01-.954 1.608z"/>
-        </svg>
-        <span class="logo-text">LoveBeats</span>
-      </div>
-
-      <div class="sidebar-nav">
-        <button class="nav-btn active" id="nav-home" onclick="showSection('home')">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-          <span>Início</span>
-        </button>
-        <button class="nav-btn" id="nav-photos" onclick="showSection('photos')">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-          <span>Nossas Fotos</span>
-        </button>
-        <button class="nav-btn" id="nav-playlist" onclick="showSection('playlist')">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z"/></svg>
-          <span>Playlist do Amor</span>
-        </button>
-        <button class="nav-btn" id="nav-message" onclick="showSection('message')">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-          <span>Mensagem</span>
-        </button>
-      </div>
-
-      <div class="sidebar-featured">
-        <p class="sidebar-section-title">Nossa Playlist</p>
-        <div class="sidebar-playlist-items" id="sidebar-playlist">
-          <!-- populated by JS -->
-        </div>
-      </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content">
-
-      <!-- HOME SECTION -->
-      <section class="section active" id="section-home">
-        <div class="hero-banner" id="hero-banner">
-          <div class="hero-overlay"></div>
-          <div class="hero-content">
-            <span class="hero-tag">🎂 Hoje é seu dia especial!</span>
-            <h1 class="hero-title">Feliz Aniversário,<br/>Meu Amor! 💖</h1>
-            <p class="hero-subtitle">Esta playlist foi feita com todo meu amor para você</p>
-            <button class="play-hero-btn" id="play-all-btn">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M8 5v14l11-7z"/></svg>
-              Tocar Tudo
-            </button>
-          </div>
-          <div class="floating-hearts" id="floating-hearts"></div>
-        </div>
-
-        <div class="home-grid">
-          <div class="home-cards-row">
-            <div class="home-card" onclick="showSection('photos')">
-              <div class="home-card-img" style="background: linear-gradient(135deg, #e96c8c, #f8b5c8)">
-                <svg viewBox="0 0 24 24" fill="white" width="40" height="40"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-              </div>
-              <p>Nossas Memórias</p>
-            </div>
-            <div class="home-card" onclick="showSection('playlist')">
-              <div class="home-card-img" style="background: linear-gradient(135deg, #1ed760, #17a349)">
-                <svg viewBox="0 0 24 24" fill="white" width="40" height="40"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-              </div>
-              <p>Playlist do Amor</p>
-            </div>
-            <div class="home-card" onclick="showSection('message')">
-              <div class="home-card-img" style="background: linear-gradient(135deg, #c026d3, #7c3aed)">
-                <svg viewBox="0 0 24 24" fill="white" width="40" height="40"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-              </div>
-              <p>Carta de Amor</p>
-            </div>
-          </div>
-
-          <div class="featured-playlist-row">
-            <h2 class="section-heading">🎵 Nossa Playlist do Amor</h2>
-            <div class="track-list" id="home-track-list">
-              <!-- populated by JS -->
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- PHOTOS SECTION -->
-      <section class="section" id="section-photos">
-        <h1 class="section-title">📸 Nossas Memórias</h1>
-        <p class="section-desc">Cada foto conta um pedaço da nossa história 💕</p>
-
-        <div class="photo-slideshow">
-          <div class="slideshow-track" id="slideshow-track">
-            <!-- photos populated by JS -->
-          </div>
-          <button class="slide-btn slide-prev" id="slide-prev">‹</button>
-          <button class="slide-btn slide-next" id="slide-next">›</button>
-          <div class="slide-dots" id="slide-dots"></div>
-        </div>
-
-        <div class="photo-grid" id="photo-grid">
-          <!-- populated by JS -->
-        </div>
-      </section>
-
-      <!-- PLAYLIST SECTION -->
-      <section class="section" id="section-playlist">
-        <div class="playlist-header">
-          <div class="playlist-cover">
-            <div class="playlist-cover-inner">
-              <svg viewBox="0 0 24 24" fill="white" width="80" height="80"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-              <span class="playlist-cover-hearts">💖</span>
-            </div>
-          </div>
-          <div class="playlist-info">
-            <span class="playlist-type">PLAYLIST</span>
-            <h1 class="playlist-title">Nossa Playlist do Amor</h1>
-            <p class="playlist-desc">Músicas que contam a nossa história 🎶</p>
-            <p class="playlist-meta">
-              <span class="playlist-author">Feito com amor ❤️</span>
-              <span>•</span>
-              <span id="playlist-count">0 músicas</span>
-            </p>
-            <div class="playlist-actions">
-              <button class="btn-play-playlist" id="play-playlist-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M8 5v14l11-7z"/></svg>
-                Tocar
-              </button>
-              <button class="btn-shuffle" id="shuffle-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 8.46 20 10.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/></svg>
-                Aleatório
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="track-list-header">
-          <span class="th-num">#</span>
-          <span class="th-title">Título</span>
-          <span class="th-album">Álbum</span>
-          <span class="th-duration">⏱</span>
-        </div>
-        <div class="track-list full" id="playlist-track-list">
-          <!-- populated by JS -->
-        </div>
-      </section>
-
-      <!-- MESSAGE SECTION -->
-      <section class="section" id="section-message">
-        <div class="message-container">
-          <div class="message-card">
-            <div class="message-hearts">💖 💗 💕 💓 💞 💖</div>
-            <h1 class="message-title">Para o Amor da Minha Vida</h1>
-            <div class="message-date">14 de Abril · Hoje é o seu dia 🎂</div>
-            <div class="message-body" id="message-body">
-              <p>Meu amor,</p>
-              <p>Hoje é um dia muito especial — <strong>seu aniversário</strong>. E eu queria fazer algo diferente, algo que mostrasse o quanto você significa pra mim.</p>
-              <p>Então criei esta playlist com as músicas que me fazem pensar em você, nas nossas risadas, nos nossos momentos... em tudo que torna essa vida mais linda ao seu lado.</p>
-              <p>Cada música é um sentimento. Cada foto é uma memória que carrego no coração.</p>
-              <p>Obrigado por existir, por sorrir daquele jeito, por ser você.</p>
-              <p class="message-signature">Com todo o meu amor,<br><strong>Seu amor ❤️</strong></p>
-            </div>
-          </div>
-          <div class="message-floating-elements">
-            <span class="float-elem">🎂</span>
-            <span class="float-elem">🌹</span>
-            <span class="float-elem">✨</span>
-            <span class="float-elem">💫</span>
-            <span class="float-elem">🎶</span>
-          </div>
-        </div>
-      </section>
-
-    </main>
-  </div>
-
-  <!-- 🎵 Player Bar -->
-  <div class="player-bar" id="player-bar" style="display:none;">
-    <div class="player-track-info">
-      <div class="player-album-art" id="player-album-art">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-      </div>
-      <div class="player-meta">
-        <p class="player-title" id="player-title">—</p>
-        <p class="player-artist" id="player-artist">—</p>
-      </div>
-      <button class="like-btn" id="like-btn" title="Curtir">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-      </button>
-    </div>
-
-    <div class="player-controls-center">
-      <div class="player-controls">
-        <button class="ctrl-btn" id="shuffle-ctrl" title="Aleatório">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 8.46 20 10.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/></svg>
-        </button>
-        <button class="ctrl-btn" id="prev-btn" title="Anterior">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
-        </button>
-        <button class="ctrl-btn play-pause-btn" id="play-pause-btn" title="Play/Pause">
-          <svg id="play-icon" viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M8 5v14l11-7z"/></svg>
-          <svg id="pause-icon" viewBox="0 0 24 24" fill="currentColor" width="28" height="28" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-        </button>
-        <button class="ctrl-btn" id="next-btn" title="Próxima">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
-        </button>
-        <button class="ctrl-btn" id="repeat-btn" title="Repetir">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
-        </button>
-      </div>
-      <div class="player-progress">
-        <span class="time-current" id="time-current">0:00</span>
-        <div class="progress-bar" id="progress-bar">
-          <div class="progress-fill" id="progress-fill"></div>
-          <div class="progress-thumb" id="progress-thumb"></div>
-        </div>
-        <span class="time-total" id="time-total">0:00</span>
-      </div>
-    </div>
-
-    <div class="player-volume">
-      <button class="ctrl-btn" id="volume-btn" title="Volume">
-        <svg id="vol-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-      </button>
-      <div class="volume-slider" id="volume-slider">
-        <div class="volume-fill" id="volume-fill" style="width:80%"></div>
-      </div>
-    </div>
-
-    <audio id="audio-player"></audio>
-  </div>
+  <canvas id="confetti-canvas"></canvas>
 
   <script src="script.js"></script>
 </body>
