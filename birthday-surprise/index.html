@@ -40,7 +40,7 @@
       <div class="scene" id="scene-2" data-theme="dark-red">
         <div class="scene-content flex-center">
           <div class="album-art glow fade-in"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/25/0d/7e/250d7e42-3a2f-19ac-f865-f1e04a4a1f97/12UMDIM01007.rgb.jpg/600x600bb.jpg" alt="State of Grace"/></div>
-          <h2 class="song-lyric mt-2 font-serif slide-up delay-1">"Neste dia especial, eu queria te dar o mundo..."</h2>
+          <h2 class="song-lyric mt-2 font-serif slide-up delay-1">"Neste dia especial, <br><span class="lyric-highlight">eu queria te dar o mundo..."</span></h2>
         </div>
         <div class="click-catcher" onclick="nextScene()"></div>
       </div>
@@ -49,7 +49,7 @@
       <div class="scene" id="scene-3" data-theme="lilac-dream">
         <div class="scene-content flex-center">
           <div class="album-art glow fade-in"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/600x600bb.jpg" alt="Lover"/></div>
-          <h2 class="song-lyric mt-2 font-serif slide-up delay-1">Mergulhar nesse sentimento suave e doce.</h2>
+          <h2 class="song-lyric mt-2 font-serif slide-up delay-1">Mergulhar nesse sentimento <br><span class="lyric-highlight">suave e doce.</span></h2>
         </div>
         <div class="click-catcher" onclick="nextScene()"></div>
       </div>
@@ -58,7 +58,7 @@
       <div class="scene" id="scene-4" data-theme="gold-epic">
         <div class="scene-content flex-center">
           <div class="album-art glow fade-in"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d4/23/57/d423579f-24f7-5c82-ed10-fbfd21ceef25/10UMDIM00487.rgb.jpg/600x600bb.jpg" alt="Long Live"/></div>
-          <h2 class="song-lyric mt-2 font-serif slide-up delay-1">E construir uma história que brilhe para a eternidade.</h2>
+          <h2 class="song-lyric mt-2 font-serif slide-up delay-1">E construir uma história <br><span class="lyric-highlight">que brilhe para a eternidade.</span></h2>
         </div>
         <div class="click-catcher" onclick="nextScene()"></div>
       </div>
@@ -67,7 +67,7 @@
       <div class="scene" id="scene-5" data-theme="intense-red">
         <div class="scene-content flex-center">
           <div class="album-art glow fade-in"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/6e/84/2f/6e842fd2-38c3-171f-da8b-92effb82f9cf/dj.ofryewvd.jpg/600x600bb.jpg" alt="Te Vivo"/></div>
-          <h2 class="song-lyric mt-2 font-serif slide-up delay-1">"Aquela saudade e aquele calor inexplicáveis."</h2>
+          <h2 class="song-lyric mt-2 font-serif slide-up delay-1">"Aquela saudade e aquele calor <br><span class="lyric-highlight">inexplicáveis."</span></h2>
         </div>
         <div class="click-catcher" onclick="nextScene()"></div>
       </div>
@@ -76,7 +76,7 @@
       <div class="scene" id="scene-6" data-theme="midnight-blue">
         <div class="scene-content flex-center">
           <div class="album-art glow fade-in"><img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/b7/9b/81/b79b8138-b95e-bf0d-1e7c-92a28bbf71a1/19UMGIM02269.rgb.jpg/600x600bb.jpg" alt="A Rua"/></div>
-          <h2 class="song-lyric mt-2 font-serif slide-up delay-1">Porque afinal de contas, debaixo de toda estrela... meu lar é você.</h2>
+          <h2 class="song-lyric mt-2 font-serif slide-up delay-1">Porque afinal de contas, debaixo de toda estrela...<br><span class="lyric-highlight">meu lar é você.</span></h2>
         </div>
         <div class="click-catcher" onclick="nextScene()"></div>
       </div>
@@ -95,17 +95,28 @@
         <div class="click-catcher" onclick="nextScene()"></div>
       </div>
 
-      <!-- Scene 8: The Video (Climax) -->
-      <div class="scene" id="scene-8" data-theme="dark">
+      <!-- Scene 8: The Audio (Climax) -->
+      <div class="scene" id="scene-8" data-theme="barbie-pink">
         <div class="scene-content flex-center w-full">
-           <h2 class="font-serif mb-2 slide-up" style="font-size: 2rem;">Alguém muito especial tem um recado pra você...</h2>
-           <div class="video-container glow fade-in delay-1">
-               <video id="barbie-video" src="assets/barbie_video.mp4" controls preload="auto" poster="https://static.wikia.nocookie.net/barbie-movies/images/f/f6/Barbiemovies.jpg/revision/latest"></video>
-               <!-- Fallback if placeholder doesn't exist -->
-               <div class="video-overlay flex-center" id="video-overlay" onclick="playBarbie()">
-                  <span>▶ Play</span>
-               </div>
+           <h2 class="font-serif mb-2 slide-up" style="font-size: 2.2rem; text-align: center;">Se liga Manu,<br>alguém quer te desejar um<br><span class="lyric-highlight">Feliz Aniversário!</span> ✨</h2>
+           
+           <div class="audio-card glow fade-in delay-1">
+             <div class="barbie-avatar">
+                <div style="font-size: 3.5rem; background: #e91e8c; width: 100%; height: 100%; display:flex; align-items:center; justify-content:center;">👱‍♀️</div>
+             </div>
+             <p class="audio-title font-sans">Mensagem de Voz Vip ✨</p>
+             <p class="audio-subtitle">Barbie (Dubladora Oficial)</p>
+             
+             <!-- Waveform animado (escondido até tocar) -->
+             <div class="waveform hidden" id="audio-waveform">
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+             </div>
+
+             <button class="play-audio-btn" id="play-barbie-btn" onclick="playBarbieAudio()">
+                ▶ Ouvir Mensagem
+             </button>
            </div>
+
            <button class="primary-btn mt-2 fade-in delay-2" onclick="nextScene()">Concluir</button>
         </div>
       </div>
@@ -123,6 +134,12 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- Global Navigation Controls -->
+    <div class="nav-controls" id="nav-controls">
+      <button class="nav-btn" onclick="prevScene()">❮</button>
+      <button class="nav-btn" onclick="nextScene()">❯</button>
     </div>
 
     <!-- Hidden YouTube Players Container -->

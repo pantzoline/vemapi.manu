@@ -138,6 +138,12 @@ function updateScenes() {
   // Progress
   updateProgressUI();
 
+  // Navigation visibility
+  const nav = document.getElementById('nav-controls');
+  if(nav) {
+    nav.style.opacity = currentSceneIndex === 0 ? '0' : '1';
+  }
+
   // YouTube Audio Context
   Object.values(ytPlayers).forEach(p => {
     if(p && typeof p.pauseVideo === 'function') {
@@ -161,7 +167,7 @@ function updateScenes() {
   }
 
   if(currentSceneIndex === 8) {
-    // Video scene logic: pause bg music
+    // Audio scene logic: pause bg music
     Object.values(ytPlayers).forEach(p => {
       if(p && typeof p.pauseVideo === 'function') p.pauseVideo();
     });
@@ -189,6 +195,13 @@ function nextScene() {
   }
 }
 
+function prevScene() {
+  if (currentSceneIndex > 1) {
+    currentSceneIndex--;
+    updateScenes();
+  }
+}
+
 // Permite voltar também clicando do lado esquerdo da tela
 document.addEventListener('click', (e) => {
   // If we are in the intro, ignore screen clicks unless it's the button
@@ -209,14 +222,38 @@ document.addEventListener('click', (e) => {
 
 
 // 5. MEDIA CONTROLS
-function playBarbie() {
-  const vid = document.getElementById('barbie-video');
-  const overlay = document.getElementById('video-overlay');
-  overlay.style.display = 'none';
-  vid.volume = 1;
-  vid.play().catch(e => {
-    alert("Vídeo ainda não disponível. Lembrete: fazer o upload de barbie_video.mp4.");
+let barbieAudio = null;
+
+function playBarbieAudio() {
+  const btn = document.getElementById('play-barbie-btn');
+  const waveform = document.getElementById('audio-waveform');
+  
+  if (!barbieAudio) {
+    barbieAudio = new Audio('assets/barbie_audio.mp3');
+    
+    barbieAudio.addEventListener('ended', () => {
+      btn.innerHTML = '▶ Ouvir Novamente';
+      waveform.classList.add('hidden');
+    });
+  }
+
+  // Ensure all background YT songs are paused
+  Object.values(ytPlayers).forEach(p => {
+    if(p && typeof p.pauseVideo === 'function') p.pauseVideo();
   });
+
+  if (barbieAudio.paused) {
+    barbieAudio.play().then(() => {
+      btn.innerHTML = '⏸ Pausar';
+      waveform.classList.remove('hidden');
+    }).catch(e => {
+      alert("Áudio não encontrado. Lembre-se de salvar barbie_audio.mp3 na pasta assets.");
+    });
+  } else {
+    barbieAudio.pause();
+    btn.innerHTML = '▶ Continuar';
+    waveform.classList.add('hidden');
+  }
 }
 
 let carrosselInterval;

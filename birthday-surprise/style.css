@@ -14,6 +14,7 @@
   --bg-intense-red: linear-gradient(135deg, #8A0000, #E62A2A);
   --bg-midnight-blue: linear-gradient(135deg, #09091A, #1B1B4A);
   --bg-sunrise: linear-gradient(135deg, #FF6B6B, #FFE66D);
+  --bg-barbie-pink: linear-gradient(135deg, #e91e8c, #ff81b9);
 }
 
 * {
@@ -109,6 +110,7 @@ body {
 .scene[data-theme="intense-red"]::before { background: var(--bg-intense-red); }
 .scene[data-theme="midnight-blue"]::before { background: var(--bg-midnight-blue); }
 .scene[data-theme="sunrise"]::before { background: var(--bg-sunrise); }
+.scene[data-theme="barbie-pink"]::before { background: var(--bg-barbie-pink); }
 
 /* Adaptação de cor para tela dourada (Long Live) */
 .scene[data-theme="gold-epic"] { color: #1e1e1e; }
@@ -241,28 +243,94 @@ body {
   pointer-events: none;
 }
 
-/* Video */
-.video-container {
+/* Audio Card Climax (Barbie Theme) */
+.audio-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  padding: 2rem;
   width: 100%;
-  aspect-ratio: 9/16;
-  max-height: 55vh;
-  background: #000;
-  border-radius: 15px;
-  overflow: hidden;
-  position: relative;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
   z-index: 20;
 }
-.video-container video { width: 100%; height: 100%; object-fit: cover; }
-.video-overlay {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
-  cursor: pointer;
+
+.barbie-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #fff;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 20px rgba(255,255,255,0.4);
 }
-.video-overlay span {
-  background: rgba(255,255,255,0.2);
+.barbie-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.audio-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 0.2rem;
+}
+.audio-subtitle {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+.play-audio-btn {
+  background: #fff;
+  color: #e91e8c;
+  border: none;
+  border-radius: 50px;
   padding: 1rem 2rem;
-  border-radius: 30px;
-  backdrop-filter: blur(5px);
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.play-audio-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Waveform Animation */
+.waveform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 40px;
+  margin-bottom: 1.5rem;
+}
+.waveform.hidden {
+  display: none;
+}
+.waveform .bar {
+  width: 6px;
+  background: white;
+  border-radius: 10px;
+  animation: wave 0.8s ease-in-out infinite alternate;
+}
+.waveform .bar:nth-child(1) { height: 10px; animation-delay: 0.0s; }
+.waveform .bar:nth-child(2) { height: 25px; animation-delay: 0.2s; }
+.waveform .bar:nth-child(3) { height: 40px; animation-delay: 0.4s; }
+.waveform .bar:nth-child(4) { height: 20px; animation-delay: 0.6s; }
+.waveform .bar:nth-child(5) { height: 15px; animation-delay: 0.8s; }
+
+@keyframes wave {
+  from { height: 10px; }
+  to { height: 35px; }
 }
 
 /* Confetti */
@@ -293,3 +361,49 @@ body {
 .delay-3 { transition-delay: 0.6s !important; }
 .delay-4 { transition-delay: 0.8s !important; }
 .delay-5 { transition-delay: 1.0s !important; }
+
+/* Custom Lyrics Highlight (Spotify Style) */
+.lyric-highlight {
+  color: #fff;
+  font-weight: 800;
+  text-shadow: 0 0 15px rgba(255,255,255,0.8);
+}
+.song-lyric {
+  color: rgba(255,255,255,0.7);
+}
+
+/* Nav Controls */
+.nav-controls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.nav-btn {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.nav-btn:hover {
+  background: rgba(255,255,255,0.3);
+  transform: scale(1.1);
+}
