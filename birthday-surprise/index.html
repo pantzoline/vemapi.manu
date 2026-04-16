@@ -81,48 +81,92 @@
         <div class="click-catcher" onclick="nextScene()"></div>
       </div>
 
-      <!-- Scene 7: Photos -->
-      <div class="scene" id="scene-7" data-theme="sunrise">
-        <div class="scene-content flex-center w-full h-full p-0">
-          <div class="photo-carrossel" id="photo-carrossel">
-            <img src="assets/photos/photo1.png" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&h=800&q=80'" class="photo-slide active" />
-            <img src="assets/photos/photo2.png" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&h=800&q=80'" class="photo-slide" />
-            <img src="assets/photos/photo3.png" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&h=800&q=80'" class="photo-slide" />
-            <img src="assets/photos/photo4.png" onerror="this.src='https://images.unsplash.com/photo-1474552226712-ac0f0961a954?auto=format&fit=crop&w=400&h=800&q=80'" class="photo-slide" />
+
+      <!-- Scene 7: Algum Ritmo (Lyrics Sync) -->
+      <div class="scene" id="scene-7" data-theme="sunset-vibes">
+        <div class="scene-content flex-center lyrics-mode">
+          <div class="mini-album-art fade-in">
+             <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/71/3b/3a/713b3a0c-7729-23f4-4a41-860829829e00/859746404743_cover.jpg/600x600bb.jpg" alt="Algum Ritmo"/>
           </div>
-          <div class="photo-overlay font-serif drop-shadow pulse-anim">Apenas o começo</div>
+          <div class="lyrics-container" id="lyrics-container-7">
+            <!-- Letras injetadas via JS -->
+          </div>
+          <div id="romantic-popup" class="romantic-popup hidden">
+            <div class="popup-inner">
+              <p>"Algum ritmo me faz lembrar de voce e toda vez que eu penso em ti lembro como te amo" ❤️</p>
+            </div>
+          </div>
         </div>
         <div class="click-catcher" onclick="nextScene()"></div>
       </div>
 
-      <!-- Scene 8: The Audio (Climax) -->
-      <div class="scene" id="scene-8" data-theme="barbie-pink">
+      <!-- Scene 8: Instagram Feed -->
+      <div class="scene" id="scene-8" data-theme="light-gray">
+        <div class="insta-feed-wrapper scene-content">
+          <div class="insta-header">
+             <span class="font-serif">Lembranças de Nós</span>
+          </div>
+          <div class="insta-feed-container" id="insta-feed"></div>
+        </div>
+        <div class="click-catcher" onclick="nextScene()"></div>
+      </div>
+
+      <!-- Scene 9: Barbie Quiz -->
+      <div class="scene" id="scene-9" data-theme="barbie-glitter">
+        <div class="scene-content flex-center">
+          <div id="quiz-container" class="quiz-container">
+            <h2 class="font-serif quiz-title">Qual filme da Barbie você seria? ✨</h2>
+            <div id="quiz-question-box"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 10: Resultado Barbie & Audio -->
+      <div class="scene" id="scene-10" data-theme="barbie-pink">
         <div class="scene-content flex-center w-full">
-           <h2 class="font-serif mb-2 slide-up" style="font-size: 2.2rem; text-align: center;">Se liga Manu,<br>alguém quer te desejar um<br><span class="lyric-highlight">Feliz Aniversário!</span> ✨</h2>
-           
+           <div id="result-castle" class="hidden result-reveal">
+             <h2 class="font-serif mb-2" style="font-size: 2.2rem; text-align: center;">Você é:<br><span class="lyric-highlight">Barbie e o Castelo de Diamante!</span> 💎</h2>
+           </div>
            <div class="audio-card glow fade-in delay-1">
              <div class="barbie-avatar">
                 <div style="font-size: 3.5rem; background: #e91e8c; width: 100%; height: 100%; display:flex; align-items:center; justify-content:center;">👱‍♀️</div>
              </div>
-             <p class="audio-title font-sans">Mensagem de Voz Vip ✨</p>
+             <p class="audio-title">Mensagem de Voz Vip ✨</p>
              <p class="audio-subtitle">Barbie (Dubladora Oficial)</p>
-             
-             <!-- Waveform animado (escondido até tocar) -->
              <div class="waveform hidden" id="audio-waveform">
                 <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
              </div>
-
-             <button class="play-audio-btn" id="play-barbie-btn" onclick="playBarbieAudio()">
-                ▶ Ouvir Mensagem
-             </button>
+             <button class="play-audio-btn" id="play-barbie-btn" onclick="playBarbieAudio()">▶ Ouvir Mensagem</button>
            </div>
-
-           <button class="primary-btn mt-2 fade-in delay-2" onclick="nextScene()">Concluir</button>
+           <button class="primary-btn mt-2 fade-in delay-2" onclick="nextScene()">Avançar</button>
         </div>
       </div>
+
+      <!-- Scene 11: Guia Kharina -->
+      <div class="scene" id="scene-11" data-theme="modern-vibe">
+        <div class="scene-content flex-center w-full">
+           <h2 class="font-serif mb-2 slide-up">Guia do seu dia especial 🗓️</h2>
+           <div class="vlog-placeholder slide-up delay-1">
+             <div class="video-mockup"><span>[Seu Vídeo de Vlog Aqui]</span></div>
+           </div>
+           <div class="destination-cards mt-2 slide-up delay-2">
+              <div class="dest-card batel" onclick="selectDest('batel')">
+                <div class="dest-img"></div>
+                <h3>Kharina Batel</h3>
+                <p>O clássico romântico</p>
+              </div>
+              <div class="dest-card cabral" onclick="selectDest('cabral')">
+                <div class="dest-img"></div>
+                <h3>Kharina Cabral</h3>
+                <p>Modernidade e Vibe</p>
+              </div>
+           </div>
+        </div>
+        <div class="click-catcher" onclick="nextScene()"></div>
+      </div>
       
-      <!-- Scene 9: Carta Final -->
-      <div class="scene" id="scene-9" data-theme="love-intense">
+      <!-- Scene 12: Carta Final -->
+      <div class="scene" id="scene-12" data-theme="love-intense">
         <div class="scene-content scrollable">
           <h1 class="font-serif slide-up" style="font-size:3.5rem; margin-bottom: 2rem;">Feliz Aniversário, Meu Amor.</h1>
           <p class="body-text txt-left slide-up delay-1">Manoela,</p>

@@ -2,18 +2,46 @@
    LOVEBEATS - WRAPPED EDITION LOGIC
    ========================================= */
 
-const SCENES_COUNT = 10;
+const SCENES_COUNT = 13;
 let currentSceneIndex = 0;
 let isStarted = false;
 
 // YOUTUBE IDs mapping by scene
-// Real official music videos/audios on YouTube
 const ytSongs = [
-  { sceneIndex: 2, id: '2Bv6r79hH6U' }, // State of Grace (Taylor's Version)
+  { sceneIndex: 2, id: '2Bv6r79hH6U' }, // State of Grace
   { sceneIndex: 3, id: '-BjZmE2gtdo' }, // Lover
   { sceneIndex: 4, id: 'R9D7U5k2Jfs' }, // Long Live
   { sceneIndex: 5, id: 'T8lV8iJ_Sjs' }, // Te Vivo
-  { sceneIndex: 6, id: 'kYJ41KjVqR0' }  // A Rua
+  { sceneIndex: 6, id: 'kYJ41KjVqR0' }, // A Rua
+  { sceneIndex: 7, id: 'p9KNo8Kx_iA' }  // Algum Ritmo (Novo!)
+];
+
+const lyricsData = {
+  7: [
+    { time: 0, text: "Algum ritmo em comum..." },
+    { time: 4, text: "Fez-nos encontrar" },
+    { time: 8, text: "Algum ritmo em comum..." },
+    { time: 12, text: "Fez-nos conversar" },
+    { time: 16, text: "Neste lugar," },
+    { time: 20, text: "Ondas não são do mar" },
+    { time: 24, text: "Quero em breve," },
+    { time: 28, text: "Vida leve" },
+    { time: 32, text: "Mas se eu ficar..." },
+    { time: 36, text: "Noites em alto-mar" }
+  ]
+};
+
+const instaData = [
+  { img: 'assets/photos/photo1.png', defaultImg: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80', description: 'Onde tudo começou...' },
+  { img: 'assets/photos/photo2.png', defaultImg: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80', description: 'Aquele dia que não esquecemos.' },
+  { img: 'assets/photos/photo3.png', defaultImg: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80', description: 'Você sendo perfeita, como sempre.' },
+  { img: 'assets/photos/photo4.png', defaultImg: 'https://images.unsplash.com/photo-1474552226712-ac0f0961a954?auto=format&fit=crop&w=600&q=80', description: 'Nosso pequeno mundo.' }
+];
+
+const quizQuestions = [
+  { q: "Qual o seu encontro ideal?", a: ["Jantar à luz de velas", "Aventura na natureza", "Noite de filmes"], weights: [1, 0, 0] },
+  { q: "O que você mais valoriza?", a: ["Amizade e Lealdade", "Poder e Estilo", "Liberdade"], weights: [1, 0, 0] },
+  { q: "Escolha um instrumento:", a: ["Violão/Guitarra", "Piano", "Flauta"], weights: [1, 0, 0] }
 ];
 
 let ytPlayers = {};
@@ -94,18 +122,19 @@ function updateProgressUI() {
       fill.style.transition = 'none';
       fill.style.width = '0%';
       
-      // Começa a animar o progresso atual com timeout (15 a 18s por cena de música, 6s para cena curta)
+      // Começa a animar o progresso atual com timeout
       setTimeout(() => {
-        let duration = (i >= 2 && i <= 6) ? 18000 : 8000;
-        if(i === 7) duration = 12000; // Fotos
-        if(i === 8) duration = 30000; // Barbie video (does not auto-progress easily, manual click anyway)
-        if(i === 9) duration = 60000; // Final letter
+        let duration = (i >= 2 && i <= 7) ? 20000 : 10000;
+        if(i === 8) duration = 25000; // Instagram Feed
+        if(i === 9) duration = 40000; // Quiz
+        if(i === 11) duration = 60000; // Kharina Comparison
+        if(i === 12) duration = 60000; // Letter
 
         fill.style.transition = `width ${duration}ms linear`;
         fill.style.width = '100%';
         
-        // Auto avançar ao acabar o tempo na mesma cena (Para as músicas)
-        if(i !== 8 && i !== 9) { // Avoid auto-skip on Video and Letter
+        // Auto avançar (exceto cenas longas/interativas)
+        if(![8, 9, 10, 11, 12].includes(i)) {
           autoProgressTimeout = setTimeout(() => {
              nextScene();
           }, duration);
@@ -161,25 +190,24 @@ function updateScenes() {
 
   // Features by scene
   if(currentSceneIndex === 7) {
-    startPhotoCarrossel();
+    initLyrics(7);
   } else {
-    stopPhotoCarrossel();
+    stopLyrics();
   }
 
   if(currentSceneIndex === 8) {
-    // Audio scene logic: pause bg music
-    Object.values(ytPlayers).forEach(p => {
-      if(p && typeof p.pauseVideo === 'function') p.pauseVideo();
-    });
+    renderInstaFeed();
   }
 
   if(currentSceneIndex === 9) {
-    // Final letter - Confetti rain
+    initQuiz();
+  }
+
+  if(currentSceneIndex === 12) {
     startConfetti();
-    // Replay Long Live or A Rua? Let's play 'Lover' softly.
-    if (ytPlayers[3] && typeof ytPlayers[3].playVideo === 'function') {
+    if (ytPlayers[3]) {
       ytPlayers[3].seekTo(0);
-      ytPlayers[3].setVolume(50);
+      ytPlayers[3].setVolume(30);
       ytPlayers[3].playVideo();
     }
   }
@@ -256,20 +284,106 @@ function playBarbieAudio() {
   }
 }
 
-let carrosselInterval;
-let currentSlide = 0;
-function startPhotoCarrossel() {
-  const slides = document.querySelectorAll('.photo-slide');
-  if(slides.length === 0) return;
-  clearInterval(carrosselInterval);
-  carrosselInterval = setInterval(() => {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
-  }, 2800);
+
+// 7. LYRICS ENGINE (Spotify Style)
+let lyricsInterval;
+function initLyrics(sceneIdx) {
+  const container = document.getElementById(`lyrics-container-${sceneIdx}`);
+  const lines = lyricsData[sceneIdx] || [];
+  container.innerHTML = lines.map((l, i) => `<div class="lyric-line" id="lyric-${sceneIdx}-${i}">${l.text}</div>`).join('');
+  
+  const popup = document.getElementById('romantic-popup');
+  
+  lyricsInterval = setInterval(() => {
+    const player = ytPlayers[sceneIdx];
+    if(player && typeof player.getCurrentTime === 'function') {
+      const time = player.getCurrentTime();
+      
+      lines.forEach((l, i) => {
+        const el = document.getElementById(`lyric-${sceneIdx}-${i}`);
+        if(time >= l.time) {
+          el.classList.add('active');
+          el.classList.remove('blur');
+        } else {
+          el.classList.remove('active');
+          el.classList.add('blur');
+        }
+      });
+
+      // Romantic Pop-up trigger (ex: around 20s of Algum Ritmo)
+      if(sceneIdx === 7 && time > 15 && time < 25) {
+        popup.classList.add('visible');
+      } else {
+        popup.classList.remove('visible');
+      }
+    }
+  }, 500);
 }
-function stopPhotoCarrossel() {
-  clearInterval(carrosselInterval);
+
+function stopLyrics() {
+  clearInterval(lyricsInterval);
+}
+
+// 8. INSTAGRAM FEED
+function renderInstaFeed() {
+  const container = document.getElementById('insta-feed');
+  if(!container) return;
+  container.innerHTML = instaData.map(item => `
+    <div class="insta-card">
+      <div class="insta-user-header" style="padding:10px; display:flex; align-items:center; gap:10px;">
+        <div style="width:30px; height:30px; border-radius:50%; background:#ddd;"></div>
+        <span style="font-weight:bold; font-size:0.9rem;">vitor_castro</span>
+      </div>
+      <img src="${item.img}" onerror="this.src='${item.defaultImg}'" class="insta-photo">
+      <div class="insta-actions"><span>❤️</span> <span>💬</span> <span>✈️</span></div>
+      <div class="insta-dedication">
+        <span class="insta-user">vitor_castro</span> ${item.description}
+      </div>
+    </div>
+  `).join('');
+}
+
+// 9. BARBIE QUIZ LOGIC
+let currentQuizStep = 0;
+function initQuiz() {
+  currentQuizStep = 0;
+  renderQuizStep();
+}
+
+function renderQuizStep() {
+  const box = document.getElementById('quiz-question-box');
+  if(currentQuizStep >= quizQuestions.length) {
+    showQuizResult();
+    return;
+  }
+  const q = quizQuestions[currentQuizStep];
+  box.innerHTML = `
+    <p style="margin-bottom:1.5rem; font-weight:bold;">${q.q}</p>
+    ${q.a.map((opt, i) => `<div class="quiz-option" onclick="nextQuizStep()">${opt}</div>`).join('')}
+  `;
+}
+
+function nextQuizStep() {
+  currentQuizStep++;
+  renderQuizStep();
+}
+
+function showQuizResult() {
+  document.getElementById('quiz-container').classList.add('fade-out');
+  setTimeout(() => {
+    nextScene(); // Pula para a cena do resultado
+    setTimeout(() => {
+      document.getElementById('result-castle').classList.remove('hidden');
+    }, 500);
+  }, 800);
+}
+
+// 10. KHARINA SELECTION
+function selectDest(unit) {
+  const cards = document.querySelectorAll('.dest-card');
+  cards.forEach(c => c.style.border = '1px solid rgba(255,255,255,0.2)');
+  document.querySelector(`.${unit}`).style.border = '2px solid #fff';
+  console.log(`Selecionado: Kharina ${unit}`);
 }
 
 // 6. CONFETTI (Final Celebration)
